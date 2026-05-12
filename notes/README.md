@@ -1,0 +1,6 @@
+Hi my code name is knox99, i am bug bounty hunter Web-app specialized , today i wanna make something different then othere its totally different learning way in 2026 , after i suffered for one and half year to try to learn web hacking i did not found any real resources that make me real understand what is going on ( by the way i am a person who love to dive into any thing currently studied i love to see everything in my eyes no someone to tell me i love to read => implement the theory => break => fix => write notes) anyway i found very interesting way to learn actually i have described already read => implement the theory(build it yourself) => break => fix => write notes 
+
+here i have build next.js app route handling + react UI frontend , my strategy to build the app slowly and be the lazy developer that make everything step by step 
+i started with a normall login-signup page and i have added middleware.js and i implemented the signup route.js
+i learned how paresef differential work i just made the user request fetch the content-type header applicaton/xml and force the backend to parse it as JSON with JSON.parse()
+now my goal is to learn actually how does CACHE POISING WORKS but we gonna learn it PERFECTLY together step by step 
