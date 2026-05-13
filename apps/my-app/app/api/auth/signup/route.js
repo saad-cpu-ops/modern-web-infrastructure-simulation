@@ -4,19 +4,24 @@ export async function POST(request) {
   try {
     const { email, password, name } = await request.json();
 
-    // 1. DATA VALIDATION
-    if (!email || !password) {
-      return NextResponse.json({ message: "Missing fields" }, { status: 400 });
-    }
+    // 🛡️ SANITIZATION: Kill newlines at the variable level
+    const cleanName = name?.replace(/[\r\n]/g, '').trim();
+    const cleanEmail = email?.replace(/[\r\n]/g, '').trim();
 
-    // 2. DATABASE STEP (Placeholder)
-    console.log(`Ready to save user: ${name} (${email}) to PostgreSQL`);
+    // 🛡️ CACHE DEFENSE: Force CDNs and Proxies NOT to cache this response
+    const response = NextResponse.json(
+      { message: `Account created for ${cleanName}` },
+      { status: 201 }
+    );
+
+    response.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate');
+    response.headers.set('Pragma', 'no-cache');
+    response.headers.set('Expires', '0');
     
-    // LATER: 
-    // const user = await pool.query('INSERT INTO users...')
+    console.log(`Ready for Postgres: Saving ${cleanEmail}...`);
+    return response;
     
-    return NextResponse.json({ message: "User created successfully" }, { status: 201 });
-  } catch (error) {
-    return NextResponse.json({ message: "Server error" }, { status: 500 });
+  } catch (err) {
+    return NextResponse.json({ message: "Server Error" }, { status: 500 });
   }
 }

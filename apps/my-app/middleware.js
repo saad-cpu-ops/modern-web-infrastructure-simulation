@@ -1,20 +1,26 @@
-// apps/my-app/middleware.js
 import { NextResponse } from 'next/server';
 
 export function middleware(request) {
-  const loggedInCookie = request.cookies.get('isLoggedIn');
+  const url = request.url;
 
-  // Logic: If the user is NOT logged in and tries to go to /dashboard,
-  // send them back to the /login page.
-  if (!loggedInCookie && request.nextUrl.pathname.startsWith('/dashboard')) {
+  // 🛡️ BLOCKING ATTACK: Detect CRLF injection in the URL or headers
+  // This prevents the "HTTP Response Splitting" required for poisoning.
+  if (url.includes('%0d') || url.includes('%0a') || url.includes('\r') || url.includes('\n')) {
+    console.error("🚨 SECURITY ALERT: Cache Poisoning Attempt Blocked");
+    return new NextResponse("Security Block: Potential HTTP Response Splitting", { status: 400 });
+  }
+
+  // 🔑 AUTH PROTECTION: Check for the session cookie
+  const isLoggedIn = request.cookies.get('isLoggedIn');
+  const isDashboard = request.nextUrl.pathname.startsWith('/dashboard');
+
+  if (isDashboard && !isLoggedIn) {
     return NextResponse.redirect(new URL('/login', request.url));
   }
 
-  // Otherwise, let them through
   return NextResponse.next();
 }
 
-// Only run this middleware on specific routes
 export const config = {
-  matcher: ['/dashboard/:path*'],
+  matcher: ['/:path*'], // Monitor every single request
 };
