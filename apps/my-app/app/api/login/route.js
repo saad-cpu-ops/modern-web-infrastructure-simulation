@@ -8,7 +8,7 @@ export async function POST(request) {
     const response = NextResponse.json({ message: "Login Successful" });
 
     // Set HttpOnly cookie - JavaScript cannot touch this!
-    response.cookies.set('isLoggedIn', 'true', {
+    response.cookies.set('isLoggedIn', user_id, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production', // Use HTTPS in production
       path: '/',
