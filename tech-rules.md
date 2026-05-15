@@ -1,18 +1,15 @@
-Frontend
-Next.js (React)
-Backend
-Next.js API routes OR Node.js later
-Database
-SQLite (start)
-PostgreSQL (later) 
+🏗 Project Architecture & Current Focus
+This isn't just about code; it's about the Stack.
 
-#######################
-Every feature you build must follow this loop:
+Frontend: React / Next.js (Client-side trust models)
 
-1. Build feature
-2. Write what it does
-3. Ask how it can break
-4. Test breaking it
-5. Write result in docs
-6. Improve it 
+Backend: Next.js Route Handlers / Middleware (The "Gatekeeper" logic)
 
+Infrastructure Layers: CDN simulation, Cache keys, and Reverse Proxies.
+
+📍 Current Research: Cache Poisoning & Parser Differentials
+I am currently obsessed with how infrastructure components talk to each other.
+
+Parser Confusion: I’ve simulated scenarios where a client sends application/xml but the backend is forced into JSON.parse(). Why? To understand where trust boundaries fail.
+
+The Cache Frontier: My current major focus is Web Cache Poisoning. I am building out CDN behaviors to see exactly how request normalization and cache keys can be manipulated to take over accounts.
