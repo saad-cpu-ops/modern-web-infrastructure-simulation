@@ -1,3 +1,14 @@
+## Open Redirect
+- Code location: api/data/route.js
+- Vulnerable code: const page = searchParams.get('page') || '/';
+return NextResponse.redirect(new URL(page, request.url));
+- Attack scenario: 
+- Fix: [we haven't written this yet]
+
+
+
+
+
 Hi, its me again , so we gonna dive into out new topic why do we use cookies ? we gonna dive into before that let us review our code at my-app/apps/api/login/route.js in our code there is a pieace of code:
  // Set HttpOnly cookie - JavaScript cannot touch this!
     response.cookies.set('isLoggedIn', 'true', {

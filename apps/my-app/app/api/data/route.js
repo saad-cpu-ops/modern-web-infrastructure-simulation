@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export async function GET(request) {
   const { searchParams } = new URL(request.url);
-  const page = searchParams.get('page') || '/';
+  const page = searchParams.get('login') || '/';
 
   // Even though Next.js has built-in safety, we use this to see 
   // if our Middleware blocks the malicious input first.

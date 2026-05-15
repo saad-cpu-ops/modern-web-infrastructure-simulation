@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 
-export function middleware(request) {
+export function proxy(request) {
   const url = request.url;
 
   // 🛡️ BLOCKING ATTACK: Detect CRLF injection in the URL or headers
