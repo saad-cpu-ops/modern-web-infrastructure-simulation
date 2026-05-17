@@ -1,0 +1,12 @@
+ok, so we gonna improve our skills and dilve into midllware today why we need it before that let me ask you a few queations : 
+- if you send a GET request using curl how does the server knows that ? if your answer is by user-agent i can tell you that it can be spoofed easily?so how we can make it harder! Your server should never trust where a request came from. It should only trust what the request can prove something can't anyone spoof it easily if your answer is JWT or CSRF tokens you are right ? but who must validated them ? by who ! YES midlleware that midlleware job, am gonna walk you through it just keep that in your mind the middleware is the proxy it's like the waiter in Resturant, when you request a food you actually don't talk with the chef am i right ! so the waiter is midllware OK! 
+# So instead of asking "did this come from a browser?" your server should ask:
+Does this request have a valid JWT? ✅
+Does this request have the correct Content-Type? ✅
+Has this IP made too many requests? (rate limiting) ✅
+Does this request have a valid CSRF token? ✅⛷️ i love csrf btw  
+
+
+so basically Middleware allows you to run code before a request is completed. Then, based on the incoming request, you can modify the response by rewriting, redirecting, modifying the request or response headers, or responding directly.
+
+Middleware runs before cached content and routes are matched. See Matching Paths for more details 

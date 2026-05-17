@@ -3,21 +3,26 @@ import { NextResponse } from 'next/server';
 export async function POST(request) {
   const { email, password } = await request.json();
 
-  // Mock check for now (Postgres logic goes here later)
+  // Mock check for now
   if (email === "admin@gmail.com" && password === "password123") {
+
+    const user_id = "1"; // FIXED
+
     const response = NextResponse.json({ message: "Login Successful" });
 
-    // Set HttpOnly cookie - JavaScript cannot touch this!
     response.cookies.set('isLoggedIn', user_id, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production', // Use HTTPS in production
+      secure: process.env.NODE_ENV === 'production',
       path: '/',
       sameSite: 'lax',
-      maxAge: 3600 // Valid for 1 hour
+      maxAge: 3600
     });
 
     return response;
   }
 
-  return NextResponse.json({ message: "Invalid Credentials" }, { status: 401 });
+  return NextResponse.json(
+    { message: "Invalid Credentials" },
+    { status: 401 }
+  );
 }
