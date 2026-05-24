@@ -89,6 +89,13 @@ export default function AuthPage() {
         </button>
 
         <p style={styles.toggleText}>
+          <span
+            style={{ color: "#3b82f6", cursor: "pointer", fontWeight: "600" }}
+            onClick={() => window.location.href = "/f-pass"}
+          >
+            Forgot Password?
+          </span>
+          <br />
           {isSignUp ? "Already have an account?" : "Don't have an account?"}
           <span onClick={() => setIsSignUp(!isSignUp)} style={styles.link}>
             {isSignUp ? " Login" : " Sign Up"}
